@@ -6,7 +6,8 @@ import router from './router'
 
 Vue.config.productionTip = false
 
-import 'font-awesome/css/font-awesome.css'
+require('font-awesome/css/font-awesome.css')
+require('../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss')
 
 /* eslint-disable no-new */
 new Vue({
