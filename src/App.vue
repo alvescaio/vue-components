@@ -1,14 +1,26 @@
 <template lang="pug">
   #app
     lista-dropdown
+    select-itens(name="select-itens" v-model="selected")
 </template>
 
 <script>
-import ListaDropdown from './components/base/ListaDropdown.vue'
-export default {
-  name: 'app',
-  components: {ListaDropdown}
-}
+  import SelectItens from './components/base/SelectItens'
+  import ListaDropdown from './components/base/ListaDropdown.vue'
+  export default {
+    name: 'app',
+    data () {
+      return {
+        selected: ''
+      }
+    },
+    watch: {
+      selected: function (val) {
+        console.log(val)
+      }
+    },
+    components: {ListaDropdown, SelectItens}
+  }
 </script>
 
 <style lang="scss">
