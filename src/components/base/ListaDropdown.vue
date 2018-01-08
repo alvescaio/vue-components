@@ -1,8 +1,8 @@
 <template lang="pug">
   ul
     item-lista-dropdown(v-for="iten in itens" :key="iten.link")
-      a(slot="principal") {{iten.name}} #[i.fa.fa-angle-down]
-      a(slot="sub") {{iten.link}}
+      a(slot="principal") {{iten.name}}
+      li(slot="sub" v-for="(subiten, index) in iten.subitens" :key="index") {{subiten}}
 </template>
 
 <script>
@@ -10,13 +10,15 @@
 
   export default{
     name: 'ListaDropdown',
-    data () {
-      return {
-        itens: [
-          {name: 'Bionegócios e Marco Legais', link: '#BioMarco'},
-          {name: 'Biotecnologia em agropecuária', link: '#BioAgro'},
-          {name: 'Biotecnologia em em recursos naturais', link: '#BioNat'}
-        ]
+    props: {
+      itens: {
+        default: () => {
+          return [
+            {name: 'Bionegócios e Marco Legais', subitens: ['subiten 1', 'subiten 2', 'subiten 3']},
+            {name: 'Biotecnologia em agropecuária', subitens: ['subiten 1', 'subiten 2', 'subiten 3']},
+            {name: 'Biotecnologia em em recursos naturais', subitens: ['subiten 1', 'subiten 2', 'subiten 3']}
+          ]
+        }
       }
     },
     components: {ItemListaDropdown}
@@ -26,7 +28,9 @@
 <style lang="scss" scoped>
   ul{
     list-style: none;
-    text-align: left;
-    padding: 0 10px;
+    padding: 0;
+    li{
+      list-style: none;
+    }
   }
 </style>

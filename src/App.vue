@@ -1,12 +1,18 @@
 <template lang="pug">
   #app
-    lista-dropdown
-    select-itens(name="select-itens" v-model="selected")
+    .container
+      h1 My Vue Components
+      h2 Lista Dropdown
+      lista-dropdown
+      h2 Custom Select
+      //-select-itens(name="select-itens" v-model="selected")
+      select-input(name="select-itens" v-model="selected")
 </template>
 
 <script>
   import SelectItens from './components/base/SelectItens'
   import ListaDropdown from './components/base/ListaDropdown.vue'
+  import SelectInput from './components/base/SelectInput.vue'
   export default {
     name: 'app',
     data () {
@@ -15,11 +21,11 @@
       }
     },
     watch: {
-      selected: function (val) {
-        console.log(val)
+      selected: (data) => {
+        console.log(data)
       }
     },
-    components: {ListaDropdown, SelectItens}
+    components: {ListaDropdown, SelectItens, SelectInput}
   }
 </script>
 
@@ -28,7 +34,6 @@
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
     color: #2c3e50;
     margin-top: 10px;
   }
