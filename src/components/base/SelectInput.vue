@@ -62,6 +62,7 @@
 
 <style lang="scss" scoped>
   ul{
+    position: relative;
     min-width: 200px;
     display: flex;
     flex-flow: column;
@@ -96,6 +97,10 @@
     }
 
     #select-itens{
+      margin-top: 32px;
+      z-index: 99;
+      position: absolute;
+      width: 100%;
       cursor: pointer;
       background: #C9E2EC;
       color: #288BB4;

@@ -4,9 +4,18 @@
       h1 My Vue Components
       h2 Lista Dropdown
       lista-dropdown
-      h2 Custom Select
+      h2 Custom Select Input
       //-select-itens(name="select-itens" v-model="selected")
-      select-input(name="select-itens" v-model="selected")
+      .row
+        .col-6
+          select-input(name="select-itens-1" v-model="selected1")
+        .col-6
+          select-input(name="select-itens-2" v-model="selected2")
+      .row
+        .col-6
+          p {{selected1}}
+        .col-6
+          p {{selected2}}
 </template>
 
 <script>
@@ -17,11 +26,15 @@
     name: 'app',
     data () {
       return {
-        selected: ''
+        selected1: '',
+        selected2: ''
       }
     },
     watch: {
-      selected: (data) => {
+      selected1: (data) => {
+        console.log(data)
+      },
+      selected2: (data) => {
         console.log(data)
       }
     },
@@ -31,10 +44,12 @@
 
 <style lang="scss">
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
-    margin-top: 10px;
+
+    .row{
+      display: flex;
+      justify-content: space-around;
+      align-content: space-between;
+    }
   }
 </style>
