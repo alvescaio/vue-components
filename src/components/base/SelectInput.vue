@@ -1,12 +1,13 @@
 <template lang="pug">
   #select-input
-    ul(v-click-outside="closeItens")
-      li#input(ref="selectInput" @click="visible = !visible")
+    ul(v-click-outside="closeItens" tabindex="1")
+      li#input(ref="selectInput" @click="visible = !visible" tabindex="1")
         input(:name="name" disabled :value="value" :placeholder="option_default")
         span
           i.fa(:class="{'fa-angle-down': !visible, 'fa-angle-up': visible}")
-      li#select-itens(v-show="visible")
-        .iten(v-for="(iten, key, index) in itens" :key="index" @click="updateSelect(key)") {{ iten }}
+      transition(name="fade")
+        li#select-itens(v-if="visible")
+          .iten(v-for="(iten, key, index) in itens" :key="index" @click="updateSelect(key)") {{ iten }}
 </template>
 
 <script>
@@ -119,4 +120,13 @@
       }
     }
   }
+
+  .fade-enter,
+  .fade-leave-to { opacity: 0 }
+
+  .fade-leave,
+  .fade-enter-to { opacity: 1 }
+
+  .fade-enter-active,
+  .fade-leave-active { transition: opacity 300ms; }
 </style>

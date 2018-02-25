@@ -22,14 +22,16 @@ Vue.directive('click-outside', {
     // Define Handler and cache it on the element
     const bubble = binding.modifiers.bubble
     const handler = (e) => {
-      if (bubble || (!el.contains(e.target) && el !== e.target)) {
-        binding.value(e)
+      var key = e.which || e.keyCode
+      if (bubble || (!el.contains(e.target) && el !== e.target) || key === 13) {
+        binding.value(e, bubble)
       }
     }
     el.__vueClickOutside__ = handler
 
     // add Event Listeners
     document.addEventListener('click', handler)
+    document.addEventListener('keypress', handler)
   },
 
   unbind: function (el, binding) {
